@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizonschool | Language & Subject Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles and animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-2"><img src="horizon.jpg" alt=""></div>
+                    <span class="text-xl font-bold text-gray-800">Horizonschool</span>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-500 transition">Home</a>
+                    <a href="#programs" class="nav-link text-gray-700 hover:text-blue-500 transition">Programs</a>
+                    <a href="#why-us" class="nav-link text-gray-700 hover:text-blue-500 transition">Why Us</a>
+                    <a href="#schedule" class="nav-link text-gray-700 hover:text-blue-500 transition">Schedule</a>
+                    <a href="#pricing" class="nav-link text-gray-700 hover:text-blue-500 transition">Pricing</a>
+                </nav>
+                
+                <!-- Contact Button -->
+                <a href="#contact" class="hidden md:block bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                    Contact / Enroll Now
+                </a>
+                
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-blue-500">Home</a>
+                <a href="#programs" class="block py-2 text-gray-700 hover:text-blue-500">Programs</a>
+                <a href="#why-us" class="block py-2 text-gray-700 hover:text-blue-500">Why Us</a>
+                <a href="#schedule" class="block py-2 text-gray-700 hover:text-blue-500">Schedule</a>
+                <a href="#pricing" class="block py-2 text-gray-700 hover:text-blue-500">Pricing</a>
+                <a href="#contact" class="block mt-2 bg-blue-500 text-white px-4 py-2 rounded-full font-medium text-center">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
+                        Unlock Your Potential with <span class="text-blue-500">Multilingual Education</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Master languages and academic subjects with our expert tutors. Personalized learning paths for students of all ages and levels.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#programs" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                            Explore Programs
+                        </a>
+                        <a href="#contact" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-50 px-8 py-3 rounded-full font-medium transition duration-300">
+                            Free Trial
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 fade-in">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Students learning" 
+                         class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Comprehensive Programs</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    We offer a diverse range of language courses and subject lessons tailored to your needs.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Language Program Card -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 card-hover fade-in">
+                    <div class="h-48 bg-blue-500 flex items-center justify-center">
+                        <i class="fas fa-language text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Language Courses</h3>
+                        <p class="text-gray-600 mb-4">
+                            Master English, Spanish, French, Mandarin, and more with our immersive language programs.
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-500 mr-2"></i>
+                                <span>Conversational & Business</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-500 mr-2"></i>
+                                <span>All proficiency levels</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-500 mr-2"></i>
+                                <span>Certification prep</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="text-blue-500 font-medium hover:text-blue-600 flex items-center">
+                            Learn more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- STEM Program Card -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 card-hover fade-in">
+                    <div class="h-48 bg-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-atom text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">STEM Subjects</h3>
+                        <p class="text-gray-600 mb-4">
+                            Excel in Science, Technology, Engineering, and Mathematics with our expert tutors.
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-indigo-500 mr-2"></i>
+                                <span>Math & Advanced Calculus</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-indigo-500 mr-2"></i>
+                                <span>Physics & Chemistry</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-indigo-500 mr-2"></i>
+                                <span>Computer Science</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="text-indigo-500 font-medium hover:text-indigo-600 flex items-center">
+                            Learn more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Arts Program Card -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 card-hover fade-in">
+                    <div class="h-48 bg-purple-500 flex items-center justify-center">
+                        <i class="fas fa-palette text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Arts & Humanities</h3>
+                        <p class="text-gray-600 mb-4">
+                            Explore your creative side with our arts, literature, and social sciences programs.
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-purple-500 mr-2"></i>
+                                <span>Creative Writing</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-purple-500 mr-2"></i>
+                                <span>Art & Design</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-purple-500 mr-2"></i>
+                                <span>History & Philosophy</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="text-purple-500 font-medium hover:text-purple-600 flex items-center">
+                            Learn more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Choose Horizonschool?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    We're committed to providing the best learning experience for our students.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center fade-in">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-tie text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Expert Instructors</h3>
+                    <p class="text-gray-600">
+                        Our tutors are highly qualified with years of teaching experience and subject matter expertise.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center fade-in">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chalkboard-teacher text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Interactive Classes</h3>
+                    <p class="text-gray-600">
+                        Engaging, student-centered lessons that make learning enjoyable and effective.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center fade-in">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-line text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Proven Results</h3>
+                    <p class="text-gray-600">
+                        95% of our students achieve their learning goals within their target timeframe.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center fade-in">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Community</h3>
+                    <p class="text-gray-600">
+                        Join a vibrant community of learners and participate in cultural events.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Class Schedule</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Flexible timings to fit your busy schedule. Both in-person and online options available.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl shadow-md overflow-hidden fade-in">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-blue-500 text-white">
+                            <tr>
+                                <th class="py-4 px-6 text-left">Day</th>
+                                <th class="py-4 px-6 text-left">Morning (9AM-12PM)</th>
+                                <th class="py-4 px-6 text-left">Afternoon (2PM-5PM)</th>
+                                <th class="py-4 px-6 text-left">Evening (6PM-9PM)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-4 px-6 font-medium">Monday</td>
+                                <td class="py-4 px-6">Spanish Beginner</td>
+                                <td class="py-4 px-6">Advanced Math</td>
+                                <td class="py-4 px-6">English Conversation</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">Tuesday</td>
+                                <td class="py-4 px-6">French Intermediate</td>
+                                <td class="py-4 px-6">Physics</td>
+                                <td class="py-4 px-6">Creative Writing</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">Wednesday</td>
+                                <td class="py-4 px-6">Mandarin Beginner</td>
+                                <td class="py-4 px-6">Chemistry</td>
+                                <td class="py-4 px-6">Business English</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">Thursday</td>
+                                <td class="py-4 px-6">German Intermediate</td>
+                                <td class="py-4 px-6">Computer Science</td>
+                                <td class="py-4 px-6">Art History</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">Friday</td>
+                                <td class="py-4 px-6">TOEFL Prep</td>
+                                <td class="py-4 px-6">Calculus</td>
+                                <td class="py-4 px-6">Spanish Advanced</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">Saturday</td>
+                                <td class="py-4 px-6" colspan="3">Special Workshops & Cultural Events</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center fade-in">
+                <p class="text-gray-600 mb-6">
+                    Don't see a time that works for you? Contact us about private tutoring options.
+                </p>
+                <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full font-medium inline-block transition duration-300 transform hover:scale-105">
+                    Request Custom Schedule
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Quality education at affordable prices. Choose the plan that fits your needs.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl fade-in">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Basic</h3>
+                        <p class="text-gray-600 mb-4">Perfect for casual learners</p>
+                        <div class="flex items-baseline mb-4">
+                            <span class="text-4xl font-bold text-gray-800">$49</span>
+                            <span class="text-gray-500 ml-1">/month</span>
+                        </div>
+                        <a href="#contact" class="block w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-center py-2 rounded-lg font-medium transition">
+                            Get Started
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>4 group classes/month</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>1 subject or language</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Access to learning materials</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times text-gray-300 mr-2"></i>
+                                <span>No private sessions</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times text-gray-300 mr-2"></i>
+                                <span>No progress reports</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Standard Plan -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative fade-in">
+                    <div class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                        MOST POPULAR
+                    </div>
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Standard</h3>
+                        <p class="text-gray-600 mb-4">Great for serious students</p>
+                        <div class="flex items-baseline mb-4">
+                            <span class="text-4xl font-bold text-gray-800">$99</span>
+                            <span class="text-gray-500 ml-1">/month</span>
+                        </div>
+                        <a href="#contact" class="block w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-2 rounded-lg font-medium transition">
+                            Get Started
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>8 group classes/month</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>2 subjects or languages</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>2 private sessions/month</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Monthly progress reports</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times text-gray-300 mr-2"></i>
+                                <span>No exam preparation</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl fade-in">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Premium</h3>
+                        <p class="text-gray-600 mb-4">For dedicated learners</p>
+                        <div class="flex items-baseline mb-4">
+                            <span class="text-4xl font-bold text-gray-800">$199</span>
+                            <span class="text-gray-500 ml-1">/month</span>
+                        </div>
+                        <a href="#contact" class="block w-full bg-gray-800 hover:bg-gray-900 text-white text-center py-2 rounded-lg font-medium transition">
+                            Get Started
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited group classes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Up to 3 subjects/languages</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>8 private sessions/month</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Weekly progress reports</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Exam preparation included</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center fade-in">
+                <p class="text-gray-600">
+                    Need something different? <a href="#contact" class="text-blue-500 hover:text-blue-600 font-medium">Contact us</a> for custom plans.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Have questions or ready to enroll? Send us a message and we'll respond within 24 hours.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-10 fade-in">
+                    <div class="md:w-1/2">
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="John Doe">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="you@example.com">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject of Interest</label>
+                                <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select a subject</option>
+                                    <option value="english">English</option>
+                                    <option value="spanish">Spanish</option>
+                                    <option value="french">French</option>
+                                    <option value="math">Mathematics</option>
+                                    <option value="science">Science</option>
+                                    <option value="arts">Arts</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tell us about your learning goals..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300 transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="md:w-1/2 bg-gray-50 p-8 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Our Location</h4>
+                                    <p class="text-gray-600">En face les pompiers, Gouraya, Tipaza, Algeria</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-500 mr-4 mt-1">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">+1 (555) 123-4567<br>Mon-Fri, 9am-6pm</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-500 mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Email</h4>
+                                    <p class="text-gray-600">info@Horizonschool.edu<br>admissions@Horizonschool.edu</p>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <h4 class="font-medium text-gray-800 mb-3">Follow Us</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-600 transition">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-2">LS</div>
+                        <span class="text-xl font-bold">Horizonschool</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Empowering students through language and subject mastery since 2010.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#programs" class="text-gray-400 hover:text-white transition">Programs</a></li>
+                        <li><a href="#why-us" class="text-gray-400 hover:text-white transition">Why Choose Us</a></li>
+                        <li><a href="#schedule" class="text-gray-400 hover:text-white transition">Schedule</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Programs</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Language Courses</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">STEM Subjects</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Arts & Humanities</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Exam Preparation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Summer Programs</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact</h4>
+                    <address class="not-italic text-gray-400 space-y-2">
+                        <p>123 Education Street<br>Knowledge City, KC 12345</p>
+                        <p>Phone: +213 562877253</p>
+                        <p>Email: info@Horizonschool.edu</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 Horizonschool Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-500 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Scroll animations
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        fadeInElements.forEach(element => {
+            fadeInObserver.observe(element);
+        });
+        
+        // Form submission (simulated)
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your message! We will contact you shortly.');
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
